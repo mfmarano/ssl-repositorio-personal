@@ -8,8 +8,18 @@ int main(int argc, const char *argv[])
     do
     {
         token = get_token();
-        //printf("ayuda %i \n", token);
+        switch (token)
+        {
+        case SEPARADOR:
+            printf("Separador: %c \n", buffer[0]);
+            break;
+        case CADENA:
+            printf("Cadena: %s \n", buffer);
+            buffer[0] = '\0';
+            break;
+        default:
+            printf("Fin de texto \n");
+            break;
+        }
     } while (token != FDT);
 }
-
-// maingw -g -Wall -std=c17 -p -pedantic-errors main.c scanner.c -o tp.exe

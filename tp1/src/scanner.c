@@ -13,8 +13,12 @@ int get_token()
 
     if (c == SEPARADOR) // si es una coma
     {
-        printf("Separador: %c \n", c);
+        buffer[0] = c;
         return SEPARADOR;
+    }
+    else if (c == FDT) // si llego al final
+    {
+        return FDT;
     }
     else // si es un caracter
     {
@@ -26,11 +30,7 @@ int get_token()
             c = getchar();
         } while (c != SEPARADOR && !isspace(c));
         ungetc(c, stdin);
-        printf("Cadena: %s \n", buffer);
-        buffer[0] = '\0';
+        buffer[i++] = '\0';
         return CADENA;
     }
-
-    printf("Fin de texto\n");
-    return FDT;
 }
