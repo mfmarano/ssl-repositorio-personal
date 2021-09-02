@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
 #include "scanner.h"
 
 int get_token()
@@ -14,9 +10,10 @@ int get_token()
     if (c == SEPARADOR) // si es una coma
     {
         buffer[0] = c;
+        buffer[1] = '\0';
         return SEPARADOR;
     }
-    else if (c == FDT) // si llego al final
+    else if (c == FDT) // si llego al final de texto
     {
         return FDT;
     }
@@ -30,7 +27,7 @@ int get_token()
             c = getchar();
         } while (c != SEPARADOR && !isspace(c));
         ungetc(c, stdin);
-        buffer[i++] = '\0';
+        buffer[i] = '\0';
         return CADENA;
     }
 }
